@@ -1,0 +1,3 @@
+build + flash + apertura monitor seriale
+(selezionare COM es. COM3...) 
+idf.y -p COMX flash monitor

