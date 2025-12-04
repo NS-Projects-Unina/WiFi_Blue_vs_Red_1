@@ -9,9 +9,6 @@ L’obiettivo è analizzare **dinamiche di attacco e difesa** tra un Red Team (a
 
 Lo scenario è composto da un **Access Point** e da un **host interno**, nel nostro caso una **webcam Wi-Fi**.
 
-⚠️ *Nessuna procedura operativa sensibile o sfruttabile è contenuta nel progetto; tutto è svolto in un contesto chiuso e controllato, a scopo esclusivamente accademico.*
-
----
 
 ## 🔴 Red Team — Scenario di attacco (simulato)
 

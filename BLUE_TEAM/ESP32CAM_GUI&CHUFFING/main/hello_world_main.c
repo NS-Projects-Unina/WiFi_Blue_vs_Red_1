@@ -46,19 +46,39 @@ uint8_t packet_buffer[512];
 
 // --- STRUTTURE HEADER ---
 typedef struct __attribute__((packed)) {
-    uint16_t frame_control; uint16_t duration; uint8_t addr1[6]; uint8_t addr2[6]; uint8_t addr3[6]; uint16_t seq_ctrl; 
+    uint16_t frame_control; 
+    uint16_t duration; 
+    uint8_t addr1[6]; 
+    uint8_t addr2[6]; 
+    uint8_t addr3[6]; 
+    uint16_t seq_ctrl; 
 } wifi_hdr_t;
 
 typedef struct __attribute__((packed)) {
-    uint8_t dsap; uint8_t ssap; uint8_t control; uint8_t org_code[3]; uint16_t ether_type; 
+    uint8_t dsap; 
+    uint8_t ssap; 
+    uint8_t control; 
+    uint8_t org_code[3]; 
+    uint16_t ether_type; 
 } llc_snap_hdr_t;
 
 typedef struct __attribute__((packed)) {
-    uint8_t version; uint8_t type; uint16_t length; 
+    uint8_t version; 
+    uint8_t type; 
+    uint16_t length; 
 } eapol_hdr_t;
 
 typedef struct __attribute__((packed)) {
-    uint8_t desc_type; uint16_t key_info; uint16_t key_length; uint8_t replay_counter[8]; uint8_t nonce[32]; uint8_t iv[16]; uint8_t rsc[8]; uint8_t id[8]; uint8_t mic[16]; uint16_t data_len;
+    uint8_t desc_type; 
+    uint16_t key_info; 
+    uint16_t key_length; 
+    uint8_t replay_counter[8]; 
+    uint8_t nonce[32]; 
+    uint8_t iv[16]; 
+    uint8_t rsc[8]; 
+    uint8_t id[8]; 
+    uint8_t mic[16]; 
+    uint16_t data_len;
 } eapol_key_frame_t;
 
 // --- FUNZIONE DECODIFICA URL (FIX FONDAMENTALE) ---
@@ -278,7 +298,7 @@ void channel_hopper_task(void *pvParameter) {
             esp_wifi_set_channel(current_channel, WIFI_SECOND_CHAN_NONE);
             printf("Scansione CH %d...\n", current_channel); 
             vTaskDelay(SCAN_TIME_MS / portTICK_PERIOD_MS); 
-        } else { vTaskDelay(10000 / portTICK_PERIOD_MS); }
+        } else { vTaskDelete(NULL); }
     }
 }
 
