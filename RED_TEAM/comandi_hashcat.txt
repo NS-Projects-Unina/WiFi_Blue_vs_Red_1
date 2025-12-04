@@ -1,0 +1,6 @@
+
+CONVERSIONE FILE .cap 
+hcxpcapngtool -o hash.hc22000 file_cattura.cap 
+
+AVVIO CRACKING 
+hashcat -m 22000 hash.hc22000 /usr/share/wordlists/rockyou.txt 

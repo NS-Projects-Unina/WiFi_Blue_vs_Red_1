@@ -2,6 +2,8 @@
 
 ### *Progetto Red Team vs Blue Team*
 
+![schemagenerale](images/generale.jpeg)
+
 ## 📌 Descrizione generale
 
 Questo progetto realizza un ambiente controllato per simulare un attacco Wi-Fi contro una telecamera IP e le relative contromisure difensive.
