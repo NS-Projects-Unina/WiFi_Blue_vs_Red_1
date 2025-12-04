@@ -132,6 +132,7 @@ WIFI_BLUE_VS_RED_1/
 │   └── ...                               # Immagini e screenshot
 │
 ├── RED_TEAM/
+│   ├── comandi_hashcat.txt
 │   ├── comandi_bash.txt                  # Attacco da riga di comando (aircrack-ng)
 │   └── dashboard.py                      # Attacco tramite dashboard Python
 │
