@@ -109,27 +109,26 @@ L’utilizzo delle tecniche discusse è **vietato al di fuori di laboratori auto
 ## Struttura del progetto
 WIFI_BLUE_VS_RED_1/
 │
-├── BLUE_TEAM/                      #firmware per fare difesa
-│   ├── ESP32CAM_GUI&CHAFFING/      #Versione che prevede chaffing con handshake poisoning e una GUI per la  configurazione iniziale
-│   │   ├── main/           
-│   │       ├──hello_world_main.c   #codice sorgente
-│   │            └── ...
-│   ├── ESP32CAM_NOGUI_CHAFFING/    #Versione che prevede chaffing con handshake poisoning e configurazione cablata
-│   │   ├── main/           
-│   │       ├──hello_world_main.c   #codice sorgente
-│   │            └── ...
-│   ├── ESP32CAM_GUI&CHAFFING/      #Versione handshake poisoning mirato e configurazione cablata
-│   │   ├── main/           
-│   │       ├──hello_world_main.c   #codice sorgente
-│   │            └── ...
-│   ├── command.txt                 #comandi per la compilazione 
-│   │             
-├── images/                 
-│   └── ... 
-│   │   
-├── RED_TEAM/                      
-│   ├── comandi_bash.txt            #attacco da riga di comando con la suite aircrack-ng
-│   ├── dashboard.py                #script python per eseguire l'attacco da interfaccia grafica
-│   │        
-├── README.md              # Questo file: guida del progetto
-└── LICENSE                # Licenza del progetto
+├── BLUE_TEAM/                          # Firmware per la difesa
+│   ├── ESP32CAM_GUI&CHAFFING/          # Chaffing + Handshake poisoning + GUI configurazione
+│   │   └── main/
+│   │       └── hello_world_main.c      # Codice sorgente
+│   │
+│   ├── ESP32CAM_NOGUI_CHAFFING/        # Chaffing + Handshake poisoning con configurazione cablata
+│   │   └── main/
+│   │       └── hello_world_main.c
+│   │
+│   ├── ESP32CAM_CHAFFING_TARGETED/     # Handshake poisoning mirato + configurazione cablata
+│   │   └── main/
+│   │       └── hello_world_main.c
+│   │
+│   └── command.txt                      # Comandi per compilazione
+│
+├── images/
+│   └── ...                               # Immagini e screenshot
+│
+├── RED_TEAM/
+│   ├── comandi_bash.txt                  # Attacco da riga di comando (aircrack-ng)
+│   └── dashboard.py                      # Attacco tramite dashboard Python
+│
+├── README.md                              # Questo file
