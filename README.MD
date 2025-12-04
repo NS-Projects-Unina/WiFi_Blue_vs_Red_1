@@ -9,9 +9,6 @@ L’obiettivo è analizzare **dinamiche di attacco e difesa** tra un Red Team (a
 
 Lo scenario è composto da un **Access Point** e da un **host interno**, nel nostro caso una **webcam Wi-Fi**.
 
-⚠️ *Nessuna procedura operativa sensibile o sfruttabile è contenuta nel progetto; tutto è svolto in un contesto chiuso e controllato, a scopo esclusivamente accademico.*
-
----
 
 ## 🔴 Red Team — Scenario di attacco (simulato)
 
@@ -70,7 +67,7 @@ Si testa una tecnica difensiva che introduce perturbazioni negli handshake osser
 
 * Laptop/PC con **Kali Linux**
 * Antenna Wi-Fi USB **Realtek** (monitor mode + packet injection)
-  → *Inserire modello: es. RTL8812AU ?*
+  → *RTL8812AU 
 
 ### 🔵 *Blue Team*
 
@@ -98,13 +95,3 @@ Di seguito è previsto un diagramma di sequenza che illustra le interazioni prin
 ![sequencediagram](images/sequencediagram.png)
 
 
----
-
-## 📝 Note di Sicurezza
-
-Questo progetto è stato sviluppato per **ricerca, formazione e cybersecurity awareness**.
-Tutte le attività descritte sono state condotte in un ambiente **chiuso, isolato e controllato**.
-
-L’utilizzo delle tecniche discusse è **vietato al di fuori di laboratori autorizzati**, in linea con normative e principi etici sulla cybersecurity.
-
----
