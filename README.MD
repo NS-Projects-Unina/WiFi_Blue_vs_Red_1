@@ -107,6 +107,8 @@ L’utilizzo delle tecniche discusse è **vietato al di fuori di laboratori auto
 ---
 
 ## Struttura del progetto
+
+```
 WIFI_BLUE_VS_RED_1/
 │
 ├── BLUE_TEAM/                          # Firmware per la difesa
@@ -132,3 +134,5 @@ WIFI_BLUE_VS_RED_1/
 │   └── dashboard.py                      # Attacco tramite dashboard Python
 │
 ├── README.md                              # Questo file
+
+```
