@@ -15,27 +15,27 @@ Lo scenario è composto da un **Access Point** e da un **host interno**, nel nos
 
 ## 🔴 Red Team — Scenario di attacco (simulato)
 
-Il Red Team utilizza un dispositivo con **Kali Linux** e un’antenna Wi-Fi basata su chipset **Realtek** (injection + monitor mode).
+Il Red Team utilizza un dispositivo con **Kali Linux** e un’antenna Wi-Fi basata su chipset **Realtek**.
 L’obiettivo è studiare i comportamenti della rete e della telecamera sotto condizioni anomale.
 
 Le fasi simulate includono:
 
-### 1️⃣ Analisi preliminare (Network reconnaissance)
+### 1️. Analisi preliminare (Network reconnaissance)
 
 * Osservazione del traffico Wi-Fi nell’area.
 * Identificazione del MAC address della telecamera tramite prefisso OUI del produttore.
 * Individuazione dell’Access Point a cui la telecamera è associata.
 
-### 2️⃣ Simulazione di deauthentication
+### 2️. Simulazione di deauthentication
 
 L’attaccante simula un disturbo forzando la disconnessione della telecamera tramite l’invio di pacchetti di deauthentication, producendo un pattern anomalo riconoscibile dal sistema difensivo.
 
-### 3️⃣ Cattura del 4-way handshake
+### 3️. Cattura del 4-way handshake
 
 Durante la riconnessione della telecamera all’AP, vengono osservati i messaggi del processo di handshake.
 Questa fase serve esclusivamente ad analizzare il comportamento della rete e non include tecniche di cracking.
 
-### 4️⃣ Analisi del traffico video
+### 4️. Analisi del traffico video
 
 Una volta ricreato l’ambiente di rete, vengono osservati i flussi **RTP** e **RTSP** per comprendere come il traffico video possa essere interpretato o protetto in contesti di sicurezza.
 
@@ -43,22 +43,22 @@ Una volta ricreato l’ambiente di rete, vengono osservati i flussi **RTP** e **
 
 ## 🔵 Blue Team — Sistema di Difesa
 
-Il Blue Team impiega una **ESP32-CAM** con capacità Wi-Fi, progettata per:
+Il Blue Team impiega una **ESP32-CAM** con modulo Wi-Fi, progettata per:
 
-### 🛡️ 1. Rilevamento di attività sospette (IDS)
+### 1. Rilevamento di attività sospette (IDS)
 
 * Analizza il traffico locale.
 * Rileva pattern tipici di attacchi Wi-Fi, come un numero anomalo di pacchetti di deauthentication.
 * Avvisa l’utente tramite un **indicatore luminoso** (LED).
 
-### 🎭 2. Chaffing — Generazione di handshake fittizi
+### 2. Chaffing — Generazione di handshake fittizi
 
 Il sistema genera **handshake artificiali** allo scopo di:
 
 * aumentare il rumore nei dati osservabili dall’attaccante,
 * rendere più complesso distinguere handshake validi da quelli fittizi.
 
-### 🧪 3. Sperimentazione di “handshake poisoning”
+### 3. Sperimentazione di “handshake poisoning”
 
 Si testa una tecnica difensiva che introduce perturbazioni negli handshake osservabili dall’esterno, rendendo inutilizzabili (o meno affidabili) i dati raccolti da uno strumento d’attacco.
 
@@ -66,32 +66,32 @@ Si testa una tecnica difensiva che introduce perturbazioni negli handshake osser
 
 ## 📡 Hardware utilizzato
 
-### 🔴 *Red Team*
+### *Red Team*
 
 * Laptop/PC con **Kali Linux**
 * Antenna Wi-Fi USB **Realtek** (monitor mode + packet injection)
-  → *Inserire modello: es. RTL8812AU ?*
 
-### 🔵 *Blue Team*
+
+### *Blue Team*
 
 * **ESP32-CAM**
 * LED di stato
 * Alimentazione USB / Modulo programmabile
 
-### 🎥 Host interno
+### Host interno
 
 * **Telecamera Wi-Fi**
 
   * MAC prefix/OUI: **8C:85:80**
   * Collegata all’Access Point dedicato allo scenario
 
-### 📶 Infrastruttura
+### Infrastruttura
 
 * Access Point configurato per il laboratorio.
 
 ---
 
-## 📊 Diagramma di Sequenza
+## Diagramma di Sequenza
 
 Di seguito è previsto un diagramma di sequenza che illustra le interazioni principali tra Red Team, AP, telecamera e Blue Team, mostrando la cronologia completa dell’attacco simulato e delle tecniche difensive.
 
@@ -100,7 +100,7 @@ Di seguito è previsto un diagramma di sequenza che illustra le interazioni prin
 
 ---
 
-## 📝 Note di Sicurezza
+## Note di Sicurezza
 
 Questo progetto è stato sviluppato per **ricerca, formazione e cybersecurity awareness**.
 Tutte le attività descritte sono state condotte in un ambiente **chiuso, isolato e controllato**.
@@ -108,3 +108,31 @@ Tutte le attività descritte sono state condotte in un ambiente **chiuso, isolat
 L’utilizzo delle tecniche discusse è **vietato al di fuori di laboratori autorizzati**, in linea con normative e principi etici sulla cybersecurity.
 
 ---
+
+## Struttura del progetto
+WIFI_BLUE_VS_RED_1/
+│
+├── BLUE_TEAM/                      #firmware per fare difesa
+│   ├── ESP32CAM_GUI&CHAFFING/      #Versione che prevede chaffing con handshake poisoning e una GUI per la  configurazione iniziale
+│   │   ├── main/           
+│   │       ├──hello_world_main.c   #codice sorgente
+│   │            └── ...
+│   ├── ESP32CAM_NOGUI_CHAFFING/    #Versione che prevede chaffing con handshake poisoning e configurazione cablata
+│   │   ├── main/           
+│   │       ├──hello_world_main.c   #codice sorgente
+│   │            └── ...
+│   ├── ESP32CAM_GUI&CHAFFING/      #Versione handshake poisoning mirato e configurazione cablata
+│   │   ├── main/           
+│   │       ├──hello_world_main.c   #codice sorgente
+│   │            └── ...
+│   ├── command.txt                 #comandi per la compilazione 
+│   │             
+├── images/                 
+│   └── ... 
+│   │   
+├── RED_TEAM/                      
+│   ├── comandi_bash.txt            #attacco da riga di comando con la suite aircrack-ng
+│   ├── dashboard.py                #script python per eseguire l'attacco da interfaccia grafica
+│   │        
+├── README.md              # Questo file: guida del progetto
+└── LICENSE                # Licenza del progetto
